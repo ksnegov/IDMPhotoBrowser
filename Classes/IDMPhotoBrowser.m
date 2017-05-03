@@ -182,6 +182,10 @@ NSLocalizedStringFromTableInBundle((key), nil, [NSBundle bundleWithPath:[[NSBund
         _scaleImage = nil;
 
         _isdraggingPhoto = NO;
+        
+        _doneButtonRightInset = 20.f;
+        _doneButtonTopInset = 30.f;
+        _doneButtonSize = CGSizeMake(55.f, 26.f);
 
         if ([self respondsToSelector:@selector(automaticallyAdjustsScrollViewInsets)])
             self.automaticallyAdjustsScrollViewInsets = NO;
@@ -616,6 +620,7 @@ NSLocalizedStringFromTableInBundle((key), nil, [NSBundle bundleWithPath:[[NSBund
         _doneButton.layer.cornerRadius = 3.0f;
         _doneButton.layer.borderColor = [UIColor colorWithWhite:0.9 alpha:0.9].CGColor;
         _doneButton.layer.borderWidth = 1.0f;
+        _doneButtonSize = _doneButtonImage.size;
     }
     else {
         [_doneButton setImage:_doneButtonImage forState:UIControlStateNormal];
@@ -1111,7 +1116,7 @@ NSLocalizedStringFromTableInBundle((key), nil, [NSBundle bundleWithPath:[[NSBund
 
     // if ([self isLandscape:orientation]) screenWidth = screenBound.size.height;
 
-    return CGRectMake(screenWidth - 75, 30, 55, 26);
+    return CGRectMake(screenWidth - self.doneButtonRightInset - self.doneButtonSize.width, self.doneButtonTopInset, self.doneButtonSize.width, self.doneButtonSize.height);
 }
 
 - (CGRect)frameForCaptionView:(IDMCaptionView *)captionView atIndex:(NSUInteger)index {
